@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		body {
+        background-color: #CBC3E3;
+        
+        padding: 50px;
+        margin: 20px;
+        }
+		#button {
+        background-color: sandybrown;
+        width: 90px;
+        height: 30px;
+       }
+       #submit {
+       visibility: hidden;
+       }
+	</style>
+</head>
+<body>
+<table>
+	<th><u>Details form</u></th>
+	<tr><td>Name:</td><td><input type="text" id="a"></td></tr>
+	<tr><td>Mob No.</td><td><input type="text" id="b"></td></tr>
+	<tr><td>Email id</td><td><input type="text" id="c"></td></tr>
+	<tr><td><input type="button" value="submit" onclick="submit()" id="button"></td></tr>
+</table>
+<hr>
+<div>
+<table id="submit">
+    <tr>
+    <td>Name</td>
+    <td>Mob No.</td>
+    <td>Email Id.</td>
+    </tr>
+</table>
+</div>
+ 
+<script type="text/javascript">
+	function submit(){
+		var name=document.getElementById("a").value;
+		var mobile=document.getElementById("b").value;
+		var email=document.getElementById("c").value;
+		var reg="^[a-zA-Z0-0+_.-]+@[a-zA-Z0-9._]+$";
+		var submit=document.getElementById("submit");
+		
+		if(name === "" && mobile === "" && email === ""){
+			alert("No field should be empty");
+		}
+		else if(name.length<3){
+			alert("Name should have atleast 3 digits");
+		}
+		else if(mobile.length != 10){
+			alert("Mobile Number should be of 10 digits");
+		}
+		else if(!email.match(reg)){
+			alert("Invalid Email id");
+		}
+        else {
+            submit.innerHTML += "<tr><td id=\"column-down\">" + name + "</td><td id=\"column-down\">" + mobile + "</td><td id=\"column-down\">" + email + "</td><td><button onclick=\"deleted()\" id=\"btn2\">Delete</button></td></tr></table>";
+    }
+    submit.style.visibility="visible";
+    }
+    function deleted() {
+        document.getElementById("submit").deleteRow(1);
+
+    } 
+		
+</script>
+</body>
+</html>
